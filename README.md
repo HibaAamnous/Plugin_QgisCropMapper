@@ -114,7 +114,6 @@ Ouvrir le fichier `help/index.html` dans un navigateur pour accéder à :
 - Guide d'installation détaillé
 - Tutoriels étape par étape
 - Description des algorithmes
-- Exemples d'utilisation
 - Résolution de problèmes
 
 ## 🤖 Algorithmes Machine Learning
@@ -140,7 +139,7 @@ Plugin développé pour le Pôle Digital de l'Agriculture, de la Forêt et Obser
 Pour toute question ou problème :
 - **Documentation** : Consulter `help/index.html`
 - **Issues** : Signaler les problèmes techniques
-- **Email** : Contact institutionnel
+- **Email** : hibaamnous@gmail.com
 
 ---
 
