@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préparation des Données ML - QgisCropMapper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="../resources/images/logo_pole_digital.png" alt="Pôle Digital de l'Agriculture" class="logo">
+                </div>
+                <div class="title-section">
+                    <h1>📊 Préparation des Données ML</h1>
+                    <p class="subtitle">Génération d'échantillons d'entraînement géoréférencés</p>
+                    <p class="version">Extraction spectrale | Échantillonnage stratifié | Validation croisée</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="algorithm-help">
+            <h2>📋 Description Technique</h2>
+            <p class="description">
+                Cet algorithme génère un jeu de données d'entraînement pour les modèles de machine learning en 
+                croisant les parcelles agricoles de référence avec les images satellites multi-spectrales. 
+                Il extrait automatiquement les valeurs spectrales et applique un échantillonnage stratifié 
+                pour garantir la qualité des données d'entraînement.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Extraction Spectrale</h3>
+                    <p>Extraction des valeurs de pixels pour toutes les bandes disponibles</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚖️</span>
+                    <h3>Échantillonnage Équilibré</h3>
+                    <p>Répartition des échantillons entre training et test par parcelle</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📐</span>
+                    <h3>Grille Régulière</h3>
+                    <p>Échantillonnage systématique avec grille de 10m dans chaque parcelle</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">✅</span>
+                    <h3>Contrôle Qualité</h3>
+                    <p>Détection et gestion automatique des valeurs manquantes</p>
+                </div>
+            </div>
+
+            <h2>⚙️ Paramètres d'Entrée</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🗺️ Parcelles de Référence</h3>
+                    <p>Couche vectorielle contenant les zones d'entraînement annotées</p>
+                    <p><strong>Géométrie :</strong> Polygones</p>
+                    <p><strong>Formats :</strong> Shapefile, GeoPackage, GeoJSON</p>
+                    <p><strong>Obligation :</strong> Attribut de classification requis</p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>🏷️ Champ de Classification</h3>
+                    <p>Nom de l'attribut contenant les types de cultures</p>
+                    <p><strong>Type :</strong> Texte</p>
+                    <p><strong>Encodage :</strong> UTF-8 recommandé</p>
+                    <p><em>Exemples : "culture", "type_culture", "label"</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🛰️ Image Satellite</h3>
+                    <p>Raster pour l'extraction des valeurs spectrales</p>
+                    <p><strong>Format :</strong> GeoTIFF, IMG, ou autre format supporté par QGIS</p>
+                    <p><strong>Bandes :</strong> Doit contenir les bandes utilisées pour l'entraînement</p>
+                    <p><strong>Important :</strong> Même SCR que les parcelles</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📊 Pourcentage d'Entraînement</h3>
+                    <p>Pourcentage des parcelles à utiliser pour l'entraînement</p>
+                    <p><strong>Plage :</strong> 10-90%</p>
+                    <p><strong>Défaut :</strong> 70%</p>
+                    <p><em>Le reste est utilisé pour la validation</em></p>
+                </div>
+            </div>
+
+            <h2>📤 Données de Sortie</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>📍 Échantillons d'Entraînement</h3>
+                    <p>Points géoréférencés avec attributs spectraux</p>
+                    <p><strong>Format :</strong> Shapefile ou GeoPackage</p>
+                    <p><strong>Attributs :</strong></p>
+                    <ul>
+                        <li>ID unique et ID parcelle</li>
+                        <li>Classe de culture</li>
+                        <li>Valeurs des bandes spectrales</li>
+                        <li>Champ "Train" (True/False)</li>
+                        <li>Métadonnées de génération</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>🔍 Processus de Traitement</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>Validation des Données</h4>
+                        <p>Vérification de la compatibilité spatiale entre parcelles et image</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>Échantillonnage Spatial</h4>
+                        <p>Génération de points selon une grille régulière de 10m dans chaque parcelle</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>Extraction Spectrale</h4>
+                        <p>Extraction des valeurs de toutes les bandes pour chaque point</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <h4>Séparation Train/Test</h4>
+                        <p>Répartition aléatoire des parcelles entre ensemble d'entraînement et de test</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <h4>Sauvegarde</h4>
+                        <p>Export des échantillons au format vectoriel</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>💡 Conseils d'Optimisation</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📐</span>
+                    <h3>Taille des Parcelles</h3>
+                    <p>Privilégier des parcelles d'au moins 0.5 hectare pour un échantillonnage représentatif</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚖️</span>
+                    <h3>Équilibrage des Classes</h3>
+                    <p>Viser un nombre similaire d'échantillons pour chaque classe de culture</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Qualité des Annotations</h3>
+                    <p>Vérifier la précision des étiquettes avant l'extraction</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Contrôle Qualité</h3>
+                    <p>Visualiser les échantillons générés pour détecter d'éventuels problèmes</p>
+                </div>
+            </div>
+
+            <h2>⚠️ Problèmes Fréquents</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🚨 Projections Incompatibles</h3>
+                    <p><strong>Symptôme :</strong> Échantillons placés dans de mauvaises zones</p>
+                    <p><strong>Solution :</strong> Vérifier que parcelles et image ont le même SCR</p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>📊 Déséquilibre des Classes</h3>
+                    <p><strong>Problème :</strong> Trop peu d'échantillons pour certaines cultures</p>
+                    <p><strong>Solution :</strong> Collecter plus de parcelles ou ajuster le ratio train/test</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🔍 Valeurs NoData</h3>
+                    <p><strong>Cause :</strong> Pixels hors image ou sans données</p>
+                    <p><strong>Solution :</strong> Vérifier l'emprise de l'image par rapport aux parcelles</p>
+                </div>
+            </div>
+
+            <div class="help-navigation">
+                <a href="Acquisition_Satellites_help.html" class="help-link">⬅️ Étape précédente : Acquisition satellites</a>
+                <a href="index.html" class="help-link">🏠 Retour à l'accueil</a>
+                <a href="model_training_help.html" class="help-link">➡️ Étape suivante : Entraînement ML</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy;  2025 Pôle Digital de l'Agriculture - QgisCropMapper | Développé par Hiba Aamnous</p>
+        </footer>
+    </div>
+</body>
+</html>

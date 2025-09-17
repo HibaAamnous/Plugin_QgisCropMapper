@@ -1,0 +1,31 @@
+
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="topoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F44336;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D32F2F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Polygone avec erreur (avant correction) -->
+  <path d="M3,8 L8,6 L12,10 L10,15 L5,13 Z" fill="#FFCDD2" stroke="#F44336" stroke-width="2" stroke-dasharray="3,2" opacity="0.7"/>
+  
+  <!-- Flèche de correction -->
+  <path d="M13,12 L17,12" stroke="#FF9800" stroke-width="2" stroke-linecap="round"/>
+  <path d="M15,10 L17,12 L15,14" fill="none" stroke="#FF9800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Polygone corrigé (après correction) -->
+  <path d="M18,8 L22,7 L22,11 L20,15 L17,13 Z" fill="#C8E6C9" stroke="#4CAF50" stroke-width="2"/>
+  
+  <!-- Icône de validation -->
+  <circle cx="20" cy="4" r="2" fill="#4CAF50"/>
+  <path d="M18.5,4 L19.5,5 L21.5,3" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Nœuds topologiques -->
+  <circle cx="3" cy="8" r="1.5" fill="#F44336"/>
+  <circle cx="8" cy="6" r="1.5" fill="#F44336"/>
+  <circle cx="12" cy="10" r="1.5" fill="#F44336"/>
+  
+  <circle cx="18" cy="8" r="1.5" fill="#4CAF50"/>
+  <circle cx="22" cy="7" r="1.5" fill="#4CAF50"/>
+  <circle cx="22" cy="11" r="1.5" fill="#4CAF50"/>
+</svg>

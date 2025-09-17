@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acquisition d'Images Satellites - QgisCropMapper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="../resources/images/logo_pole_digital.png" alt="Pôle Digital de l'Agriculture" class="logo">
+                </div>
+                <div class="title-section">
+                    <h1>🛰️ Acquisition d'Images Satellites</h1>
+                    <p class="subtitle">Téléchargement automatisé via Google Earth Engine</p>
+                    <p class="version">Collection Sentinel-2 | Filtrage intelligent | Export Google Drive</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="algorithm-help">
+            <h2>📋 Description Technique</h2>
+            <p class="description">
+                Cet algorithme se connecte à Google Earth Engine pour télécharger automatiquement des images Sentinel-2 
+                selon vos critères de sélection. Il filtre les images par couverture nuageuse, calcule les indices de 
+                végétation et exporte les résultats vers votre Google Drive.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Filtrage Intelligent</h3>
+                    <p>Sélection des images avec couverture nuageuse minimale et données manquantes limitées</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📅</span>
+                    <h3>Période Personnalisable</h3>
+                    <p>Définition de plages temporelles précises adaptées à vos besoins</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h3>Support de Géométries Complexes</h3>
+                    <p>Traitement de polygones, lignes et points avec reprojection automatique</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Calcul d'Indices</h3>
+                    <p>Génération automatique d'indices de végétation (NDVI, SAVI, EVI, etc.)</p>
+                </div>
+            </div>
+
+            <h2>⚙️ Paramètres d'Entrée</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🌐 ID Projet Google Cloud</h3>
+                    <p>Identifiant de votre projet GCP avec Earth Engine API activée</p>
+                    <p><strong>Format :</strong> Chaîne de caractères</p>
+                    <p><strong>Obligatoire :</strong> Oui</p>
+                    <p><em>Exemple : "mon-projet-agriculture-12345"</em></p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>🗺️ Zone d'Étude</h3>
+                    <p>Couche vectorielle définissant la zone géographique d'intérêt</p>
+                    <p><strong>Type :</strong> Polygone(s), ligne(s) ou point(s)</p>
+                    <p><strong>Reprojection :</strong> Automatique vers WGS84 (EPSG:4326)</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📅 Date de Début</h3>
+                    <p>Date de début de la période d'acquisition</p>
+                    <p><strong>Format :</strong> AAAA-MM-JJ</p>
+                    <p><strong>Recommandation :</strong> Période de croissance active des cultures</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📅 Date de Fin</h3>
+                    <p>Date de fin de la période d'acquisition</p>
+                    <p><strong>Format :</strong> AAAA-MM-JJ</p>
+                    <p><strong>Durée recommandée :</strong> 30-90 jours pour couvrir un cycle cultural</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>☁️ Couverture Nuageuse Maximum</h3>
+                    <p>Pourcentage maximum de nuages accepté par image</p>
+                    <p><strong>Plage :</strong> 0-100%</p>
+                    <p><strong>Défaut :</strong> 20%</p>
+                    <p><em>Recommandé : 10-30% selon la région et la saison</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📊 Données Manquantes Maximum</h3>
+                    <p>Pourcentage maximum de données manquantes (NoData) accepté</p>
+                    <p><strong>Plage :</strong> 0-100%</p>
+                    <p><strong>Défaut :</strong> 20%</p>
+                    <p><em>Recommandé : 10-20% pour une bonne qualité</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🏷️ Tuile MGRS (Optionnel)</h3>
+                    <p>Filtrage par tuile MGRS spécifique</p>
+                    <p><strong>Format :</strong> Code MGRS (ex: "29SQU")</p>
+                    <p><strong>Optionnel :</strong> Oui</p>
+                    <p><em>Laissez vide pour traiter toutes les tuiles couvrant la zone</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📈 Indice de Végétation</h3>
+                    <p>Sélection de l'indice à calculer et exporter</p>
+                    <p><strong>Options :</strong> NDVI, SAVI, EVI, NDWI, GNDVI, MNDWI</p>
+                    <p><strong>Défaut :</strong> NDVI</p>
+                    <p><em>NDVI recommandé pour la plupart des applications</em></p>
+                </div>
+            </div>
+
+            <h2>📤 Résultats de Sortie</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>📁 Export Google Drive</h3>
+                    <p>Images exportées vers votre Google Drive</p>
+                    <p><strong>Format :</strong> GeoTIFF multi-bandes</p>
+                    <p><strong>Contenu :</strong> Bandes Sentinel-2 + indices calculés</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🔢 Série Temporelle</h3>
+                    <p>Export des images pour chaque date disponible</p>
+                    <p><strong>Version :</strong> Données brutes et masquées (sans nuages/eau/bâti)</p>
+                    <p><strong>Nommage :</strong> Préfixe_index_date</p>
+                </div>
+            </div>
+
+            <h2>🔧 Configuration Requise</h2>
+            <div class="install-steps">
+                <div class="install-step">
+                    <h4>1. Compte Google Earth Engine</h4>
+                    <p>Créer un compte sur <a href="https://earthengine.google.com/">Google Earth Engine</a> et l'activer</p>
+                </div>
+                <div class="install-step">
+                    <h4>2. Projet Google Cloud Platform</h4>
+                    <p>Créer un projet GCP et activer l'API Earth Engine</p>
+                </div>
+                <div class="install-step">
+                    <h4>3. Authentification</h4>
+                    <p>L'authentification se fait automatiquement au premier lancement</p>
+                </div>
+            </div>
+
+            <h2>⚠️ Dépannage</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>❌ Erreur d'Authentification</h3>
+                    <p><strong>Symptôme :</strong> Impossible de se connecter à GEE</p>
+                    <p><strong>Solution :</strong> Vérifiez votre ID projet GCP et réauthentifiez-vous</p>
+                    <div class="code-block">
+                        <code>import ee<br>ee.Authenticate()</code>
+                    </div>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>⏱️ Timeout de Téléchargement</h3>
+                    <p><strong>Cause :</strong> Zone trop grande ou période trop longue</p>
+                    <p><strong>Solution :</strong> Réduisez la zone d'étude ou la période temporelle</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📷 Aucune Image Trouvée</h3>
+                    <p><strong>Cause :</strong> Critères de filtrage trop restrictifs</p>
+                    <p><strong>Solution :</strong> Augmentez les seuils de nuages/données manquantes</p>
+                </div>
+            </div>
+
+            <div class="help-navigation">
+                <a href="index.html" class="help-link">🏠 Retour à l'accueil</a>
+                <a href="data_preparation_help.html" class="help-link">➡️ Étape suivante : Préparation des données</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Pôle Digital de l'Agriculture - QgisCropMapper | Développé par Hiba Aamnous</p>
+        </footer>
+    </div>
+</body>
+</html>

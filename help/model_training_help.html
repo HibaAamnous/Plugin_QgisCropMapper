@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entraînement des Modèles ML - QgisCropMapper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="../resources/images/logo_pole_digital.png" alt="Pôle Digital de l'Agriculture" class="logo">
+                </div>
+                <div class="title-section">
+                    <h1>🤖 Entraînement des Modèles ML</h1>
+                    <p class="subtitle">4 Algorithmes : Random Forest, SVM, XGBoost & Decision Tree</p>
+                    <p class="version">Validation croisée | Optimisation hyperparamètres | Sélection modèle</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="algorithm-help">
+            <h2>📋 Description Technique</h2>
+            <p class="description">
+                Cet algorithme entraîne et compare plusieurs modèles de machine learning pour la classification 
+                des cultures agricoles. Il utilise les échantillons préparés précédemment, applique une validation 
+                croisée et optimise les hyperparamètres pour sélectionner le meilleur modèle.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔄</span>
+                    <h3>Validation Croisée</h3>
+                    <p>Évaluation robuste des performances avec k-fold cross-validation</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚙️</span>
+                    <h3>Optimisation Hyperparamètres</h3>
+                    <p>Recherche automatique des meilleures configurations pour chaque algorithme</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Comparaison Modèles</h3>
+                    <p>Évaluation comparative de 4 algorithmes différents</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏆</span>
+                    <h3>Sélection Meilleur Modèle</h3>
+                    <p>Identification et sauvegarde du modèle aux meilleures performances</p>
+                </div>
+            </div>
+
+            <h2>⚙️ Paramètres d'Entrée</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>📊 Échantillons d'Entraînement</h3>
+                    <p>Points d'échantillonnage avec valeurs spectrales et labels</p>
+                    <p><strong>Format :</strong> Shapefile ou GeoPackage</p>
+                    <p><strong>Attributs requis :</strong> Bandes spectrales + champ culture</p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>🏷️ Champ de Culture</h3>
+                    <p>Attribut contenant les types de cultures</p>
+                    <p><strong>Type :</strong> Texte</p>
+                    <p><strong>Exemples :</strong> "culture", "type_culture", "label"</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🔧 Algorithmes</h3>
+                    <p>Sélection des algorithmes à entraîner et comparer</p>
+                    <p><strong>Options :</strong></p>
+                    <ul>
+                        <li>Random Forest (forêts aléatoires)</li>
+                        <li>SVM (machines à vecteurs de support)</li>
+                        <li>XGBoost (gradient boosting)</li>
+                        <li>Decision Tree (arbre de décision)</li>
+                        <li>Tous les algorithmes</li>
+                    </ul>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>⚙️ Optimisation Hyperparamètres</h3>
+                    <p>Activation/désactivation de l'optimisation des hyperparamètres</p>
+                    <p><strong>Options :</strong> Oui/Non</p>
+                    <p><strong>Défaut :</strong> Oui</p>
+                    <p><em>Désactiver pour un entraînement plus rapide mais moins performant</em></p>
+                </div>
+            </div>
+
+            <h2>📤 Résultats de Sortie</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🤖 Modèle Entraîné</h3>
+                    <p>Meilleur modèle sauvegardé au format pickle</p>
+                    <p><strong>Format :</strong> .pkl</p>
+                    <p><strong>Contenu :</strong> Modèle + métadonnées (noms des features, classes)</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📈 Scaler et Label Encoder</h3>
+                    <p>Objets de prétraitement nécessaires pour la prédiction</p>
+                    <p><strong>Format :</strong> .pkl</p>
+                    <p><strong>Contenu :</strong> Scaler et encodeur de labels</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📊 Rapports d'Évaluation</h3>
+                    <p>Rapports détaillés des performances de tous les modèles</p>
+                    <p><strong>Format :</strong> Fichiers texte</p>
+                    <p><strong>Contenu :</strong> Métriques, matrices de confusion, importance des variables</p>
+                </div>
+            </div>
+
+            <h2>🔄 Processus d'Entraînement</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>Chargement des Données</h4>
+                        <p>Lecture des échantillons et extraction des features/labels</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>Prétraitement</h4>
+                        <p>Nettoyage, imputation des valeurs manquantes et normalisation</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>Séparation Train/Test</h4>
+                        <p>Division des données selon le champ "Train" des échantillons</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <h4>Entraînement des Modèles</h4>
+                        <p>Entraînement de chaque algorithme sélectionné</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <h4>Optimisation Hyperparamètres</h4>
+                        <p>Recherche des meilleures configurations (si activé)</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <div class="step-content">
+                        <h4>Évaluation et Sélection</h4>
+                        <p>Comparaison des performances et sélection du meilleur modèle</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>📊 Métriques d'Évaluation</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>🎯 Précision (Accuracy)</h3>
+                    <p>Pourcentage de prédictions correctes</p>
+                    <p><strong>Objectif :</strong> > 85%</p>
+                </div>
+                <div class="metric-card">
+                    <h3>📈 F1-Score</h3>
+                    <p>Moyenne harmonique entre précision et rappel</p>
+                    <p><strong>Objectif :</strong> > 0.8</p>
+                </div>
+                <div class="metric-card">
+                    <h3>🔍 Rapport Détaillé</h3>
+                    <p>Métriques par classe (précision, rappel, f1-score)</p>
+                    <p><strong>Format :</strong> Tableau et valeurs agrégées</p>
+                </div>
+            </div>
+
+            <h2>💡 Conseils d'Optimisation</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">⚖️</span>
+                    <h3>Équilibrage des Classes</h3>
+                    <p>Assurez-vous d'avoir suffisamment d'échantillons pour chaque classe</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Sélection de Features</h3>
+                    <p>Vérifiez l'importance des variables et supprimez les moins importantes</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔄</span>
+                    <h3>Validation Croisée</h3>
+                    <p>Utilisez toujours la validation croisée pour une évaluation robuste</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⏱️</span>
+                    <h3>Temps de Calcul</h3>
+                    <p>Pour de grands jeux de données, désactivez l'optimisation hyperparamètres</p>
+                </div>
+            </div>
+
+            <div class="help-navigation">
+                <a href="data_preparation_help.html" class="help-link">⬅️ Étape précédente : Préparation des données</a>
+                <a href="index.html" class="help-link">🏠 Retour à l'accueil</a>
+                <a href="classification_help.html" class="help-link">➡️ Étape suivante : Classification</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Pôle Digital de l'Agriculture - QgisCropMapper | Développé par Hiba Aamnous</p>
+        </footer>
+    </div>
+</body>
+</html>

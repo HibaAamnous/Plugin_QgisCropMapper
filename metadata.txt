@@ -1,0 +1,44 @@
+[general]
+name=Cartographie des Cultures - ML & GEE
+qgisMinimumVersion=3.16
+description=Plugin professionnel de cartographie des cultures avec Machine Learning et Google Earth Engine - Développé au Pôle Digital Agriculture
+version=2.0.0
+author=Hiba Aamnous - Pôle Digital de l'Agriculture, de la Forêt et Observatoire de la Sécheresse
+email=hibaamnous@gmail.com
+
+about=Plugin QGIS professionnel développé au Pôle Digital de l'Agriculture (IAV Hassan II) pour la cartographie automatisée des cultures agricoles.
+
+    PIPELINE COMPLET DE CARTOGRAPHIE :
+    🛰️ 1. Acquisition d'Images Satellites (Google Earth Engine)
+    📊 2. Préparation des Données d'Entraînement
+    🤖 3. Entraînement de Modèles ML (Random Forest, SVM, XGBoost, Decision Tree)
+    🗺️ 4. Classification et Cartographie Automatique
+    🔧 5. Correction Topologique Avancée
+
+    FONCTIONNALITÉS AVANCÉES :
+    • Intégration complète Google Earth Engine
+    • 4 algorithmes de Machine Learning optimisés
+    • Interface graphique professionnelle
+    • Correction topologique intelligente
+    • Génération automatique de cartes thématiques
+    • Validation croisée et métriques de performance
+    • Export multi-formats (Shapefile, GeoTIFF, PDF)
+    • Documentation complète et aide contextuelle
+
+repository=https://github.com/HibaAamnous/Agriculture-Mapping-Plugin
+hasProcessingProvider=yes
+category=Analysis
+icon=resources/icon.png
+experimental=False
+deprecated=False
+
+tags=agriculture,cartographie,machine learning,google earth engine,télédétection,cultures,classification,topologie
+
+changelog=2.0.0 - Plugin complet avec 5 algorithmes intégrés
+    - Acquisition satellite automatisée via GEE
+    - Pipeline ML complet avec 4 algorithmes
+    - Interface topologique avancée
+    - Documentation professionnelle
+    - Système d'aide contextuelle intégré
+
+dependencies=scikit-learn,xgboost,python-docx,seaborn,matplotlib,earthengine-api,rasterio,joblib,python-magic

@@ -1,0 +1,15 @@
+# Fichiers générés par QGIS
+*.pyc
+__pycache__/
+*.qm
+*.aux.xml
+
+# Fichiers de développement
+.vscode/
+.idea/
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*~

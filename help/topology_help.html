@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correction Topologique - QgisCropMapper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="../resources/images/logo_pole_digital.png" alt="Pôle Digital de l'Agriculture" class="logo">
+                </div>
+                <div class="title-section">
+                    <h1>🔧 Correction Topologique</h1>
+                    <p class="subtitle">Nettoyage et validation spatiale des données</p>
+                    <p class="version">Géométries invalides | Recouvrements | Multi-parties | Déchets</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="algorithm-help">
+            <h2>📋 Description Technique</h2>
+            <p class="description">
+                Cet algorithme effectue une correction topologique complète des couches vectorielles de cultures 
+                pour garantir leur cohérence spatiale. Il détecte et corrige automatiquement les erreurs de géométrie, 
+                les recouvrements, les multi-parties et les éléments indésirables.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔄</span>
+                    <h3>Correction Géométries</h3>
+                    <p>Réparation automatique des géométries invalides et auto-intersectantes</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Résolution Recouvrements</h3>
+                    <p>Détection et correction intelligente des polygones qui se chevauchent</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Nettoyage Multi-parties</h3>
+                    <p>Conversion des géométries multi-parties en single-parties</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🗑️</span>
+                    <h3>Suppression Déchets</h3>
+                    <p>Élimination des micro-polygones et éléments indésirables</p>
+                </div>
+            </div>
+
+            <h2>⚙️ Paramètres d'Entrée</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🗺️ Couche à Corriger</h3>
+                    <p>Couche vectorielle contenant les polygones de cultures</p>
+                    <p><strong>Géométrie :</strong> Polygones</p>
+                    <p><strong>Formats :</strong> Shapefile, GeoPackage, GeoJSON</p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>🏷️ Champ des Cultures</h3>
+                    <p>Attribut contenant les types de cultures</p>
+                    <p><strong>Utilisation :</strong> Pour la résolution intelligente des recouvrements</p>
+                    <p><strong>Important :</strong> Doit être présent dans la couche</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>✅ Correction Géométries</h3>
+                    <p>Activer la correction des géométries invalides</p>
+                    <p><strong>Options :</strong> Oui/Non</p>
+                    <p><strong>Défaut :</strong> Oui</p>
+                    <p><em>Désactiver seulement si les géométries sont déjà valides</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>⚡ Correction Recouvrements</h3>
+                    <p>Activer la détection et correction des polygones qui se chevauchent</p>
+                    <p><strong>Options :</strong> Oui/Non</p>
+                    <p><strong>Défaut :</strong> Oui</p>
+                    <p><em>Recommandé pour éviter les incohérences spatiales</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🔍 Conversion Multi-parties</h3>
+                    <p>Convertir les multi-parties en single-parties</p>
+                    <p><strong>Options :</strong> Oui/Non</p>
+                    <p><strong>Défaut :</strong> Oui</p>
+                    <p><em>Recommandé pour la compatibilité avec la plupart des logiciels</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🗑️ Nettoyage Déchets</h3>
+                    <p>Supprimer les micro-polygones et éléments indésirables</p>
+                    <p><strong>Options :</strong> Oui/Non</p>
+                    <p><strong>Défaut :</strong> Oui</p>
+                    <p><em>Améliore la qualité et réduit la taille des données</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📏 Seuil Surface Déchets</h3>
+                    <p>Surface minimale pour conserver un polygone</p>
+                    <p><strong>Unité :</strong> mètres carrés</p>
+                    <p><strong>Défaut :</strong> 100 m²</p>
+                    <p><em>Augmenter pour un nettoyage plus aggressif</em></p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🔄 Reprojection</h3>
+                    <p>Reprojeter la couche dans un autre système de coordonnées</p>
+                    <p><strong>Options :</strong> Oui/Non</p>
+                    <p><strong>Défaut :</strong> Non</p>
+                    <p><em>Utile pour l'interopérabilité avec d'autres données</em></p>
+                </div>
+            </div>
+
+            <h2>📤 Résultats de Sortie</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>✅ Couche Corrigée</h3>
+                    <p>Couche vectorielle avec toutes les corrections appliquées</p>
+                    <p><strong>Format :</strong> Shapefile</p>
+                    <p><strong>Contenu :</strong> Polygones valides sans erreurs topologiques</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📊 Rapport Détaillé</h3>
+                    <p>Rapport complet des corrections effectuées</p>
+                    <p><strong>Format :</strong> Fichier texte</p>
+                    <p><strong>Contenu :</strong> Statistiques et détails de toutes les modifications</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>⚡ Zones de Recouvrement</h3>
+                    <p>Couche des intersections détectées (optionnel)</p>
+                    <p><strong>Format :</strong> Shapefile</p>
+                    <p><strong>Utilité :</strong> Pour analyse et validation manuelle</p>
+                </div>
+            </div>
+
+            <h2>🔄 Processus de Correction</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>Validation des Données</h4>
+                        <p>Vérification de la couche d'entrée et détection des problèmes</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>Correction Géométries</h4>
+                        <p>Réparation des géométries invalides et auto-intersectantes</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>Résolution Recouvrements</h4>
+                        <p>Détection et correction intelligente des chevauchements</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <h4>Conversion Multi-parties</h4>
+                        <p>Conversion des géométries multi-parties en single-parties</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <h4>Nettoyage Déchets</h4>
+                        <p>Suppression des micro-polygones selon le seuil défini</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <div class="step-content">
+                        <h4>Génération Rapports</h4>
+                        <p>Création du rapport détaillé et des couches annexes</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>💡 Stratégies de Correction</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🔧 Géométries Invalides</h3>
+                    <p><strong>Problème :</strong> Auto-intersections, anneaux, géométries non simples</p>
+                    <p><strong>Solution :</strong> Utilisation d'algorithmes de réparation robustes</p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>⚡ Recouvrements</h3>
+                    <p><strong>Problème :</strong> Polygones qui se chevauchent</p>
+                    <p><strong>Solution :</strong> Différence géométrique priorisée par type de culture</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🔍 Multi-parties</h3>
+                    <p><strong>Problème :</strong> Géométries avec multiple parties</p>
+                    <p><strong>Solution :</strong> Conversion en single-parties avec attribution correcte</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🗑️ Déchets Géométriques</h3>
+                    <p><strong>Problème :</strong> Micro-polygones et artefacts</p>
+                    <p><strong>Solution :</strong> Suppression basée sur un seuil de surface</p>
+                </div>
+            </div>
+
+            <h2>⚠️ Considerations Importantes</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">⏱️</span>
+                    <h3>Temps de Calcul</h3>
+                    <p>Le traitement peut être long pour les grandes couches</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💾</span>
+                    <h3>Mémoire</h3>
+                    <p>Assurez-vous d'avoir suffisamment de mémoire RAM</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Validation</h3>
+                    <p>Toujours valider les résultats après correction</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔁</span>
+                    <h3>Itérations</h3>
+                    <p>Plusieurs passes peuvent être nécessaires pour les données complexes</p>
+                </div>
+            </div>
+
+            <div class="help-navigation">
+                <a href="classification_help.html" class="help-link">⬅️ Étape précédente : Classification</a>
+                <a href="index.html" class="help-link">🏠 Retour à l'accueil</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Pôle Digital de l'Agriculture - QgisCropMapper | Développé par Hiba Aamnous</p>
+        </footer>
+    </div>
+</body>
+</html>

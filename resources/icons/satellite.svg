@@ -1,0 +1,20 @@
+
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="satelliteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1976D2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Corps principal du satellite -->
+  <rect x="8" y="6" width="8" height="12" rx="1" fill="url(#satelliteGrad)" stroke="#0D47A1" stroke-width="0.5"/>
+  <!-- Panneaux solaires -->
+  <rect x="4" y="8" width="3" height="8" rx="0.5" fill="#4CAF50" stroke="#388E3C" stroke-width="0.3"/>
+  <rect x="17" y="8" width="3" height="8" rx="0.5" fill="#4CAF50" stroke="#388E3C" stroke-width="0.3"/>
+  <!-- Antenne -->
+  <circle cx="12" cy="4" r="1.5" fill="#FF9800" stroke="#F57C00" stroke-width="0.3"/>
+  <line x1="12" y1="4" x2="12" y2="6" stroke="#FF9800" stroke-width="2" stroke-linecap="round"/>
+  <!-- Signaux -->
+  <path d="M12,20 Q8,22 6,18 Q8,16 12,20" fill="none" stroke="#4CAF50" stroke-width="1.5" opacity="0.7"/>
+  <path d="M12,20 Q16,22 18,18 Q16,16 12,20" fill="none" stroke="#4CAF50" stroke-width="1.5" opacity="0.7"/>
+</svg>

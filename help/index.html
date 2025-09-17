@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QgisCropMapper - Cartographie des Cultures</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="../resources/images/logo_pole_digital.png" alt="Pôle Digital de l'Agriculture" class="logo">
+                </div>
+                <div class="title-section">
+                    <h1>🌾 QgisCropMapper</h1>
+                    <p class="subtitle">Cartographie intelligente des cultures agricoles</p>
+                    <p class="version">Version 2.0.0 | Machine Learning & Google Earth Engine</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="overview">
+            <h2>📋 Vue d'ensemble</h2>
+            <p class="description">
+                QgisCropMapper est un plugin QGIS avancé développé par le Pôle Digital de l'Agriculture pour 
+                automatiser la cartographie des cultures agricoles en utilisant l'intelligence artificielle 
+                et les images satellites Sentinel-2 via Google Earth Engine.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🛰️</span>
+                    <h3>Acquisition Automatique</h3>
+                    <p>Téléchargement intelligent d'images Sentinel-2 filtrées par couverture nuageuse</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Préparation ML</h3>
+                    <p>Génération d'échantillons d'entraînement géoréférencés avec extraction spectrale</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>IA Multi-Modèles</h3>
+                    <p>Comparaison automatique de 4 algorithmes : Random Forest, SVM, XGBoost, Decision Tree</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🗺️</span>
+                    <h3>Cartographie Précise</h3>
+                    <p>Application du meilleur modèle avec métriques de performance détaillées</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="workflow">
+            <h2>🔄 Pipeline de Traitement</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>🛰️ Acquisition Satellites</h4>
+                        <p>Connexion automatique à Google Earth Engine et téléchargement des images Sentinel-2 multi-spectrales</p>
+                        <a href="Acquisition_Satellites_help.html" class="help-link">📖 Documentation détaillée</a>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>📊 Préparation Données ML</h4>
+                        <p>Extraction des valeurs spectrales des parcelles de référence pour créer un jeu d'entraînement</p>
+                        <a href="data_preparation_help.html" class="help-link">📖 Documentation détaillée</a>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>🤖 Entraînement IA</h4>
+                        <p>Formation et évaluation comparative de modèles ML avec optimisation des hyperparamètres</p>
+                        <a href="model_training_help.html" class="help-link">📖 Documentation détaillée</a>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <h4>🗺️ Classification</h4>
+                        <p>Application du modèle optimal sur nouvelles zones avec génération de cartes thématiques</p>
+                        <a href="classification_help.html" class="help-link">📖 Documentation détaillée</a>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <h4>🔧 Correction Topologique</h4>
+                        <p>Validation spatiale et nettoyage automatique des anomalies géométriques</p>
+                        <a href="topology_help.html" class="help-link">📖 Documentation détaillée</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="requirements">
+            <h2>⚙️ Configuration Système</h2>
+            <div class="req-grid">
+                <div class="req-card">
+                    <h3>🛠️ Prérequis Logiciels</h3>
+                    <ul>
+                        <li>QGIS 3.22+ (LTR recommandée)</li>
+                        <li>Python 3.8+ avec pip</li>
+                        <li>Compte Google Cloud Platform</li>
+                        <li>Authentification Google Earth Engine</li>
+                    </ul>
+                </div>
+                <div class="req-card">
+                    <h3>📦 Dépendances Python</h3>
+                    <ul>
+                        <li>scikit-learn (modèles ML)</li>
+                        <li>xgboost (gradient boosting)</li>
+                        <li>earthengine-api (GEE)</li>
+                        <li>rasterio, joblib (données géo)</li>
+                        <li>seaborn, matplotlib (visualisation)</li>
+                    </ul>
+                </div>
+                <div class="req-card">
+                    <h3>💾 Ressources Matérielles</h3>
+                    <ul>
+                        <li>RAM : 8 GB minimum (16 GB recommandé)</li>
+                        <li>Stockage : 5 GB d'espace libre</li>
+                        <li>Internet : Connexion stable pour GEE</li>
+                        <li>Processeur : Multi-cœur recommandé</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="installation">
+            <h2>📥 Installation Rapide</h2>
+            <div class="install-steps">
+                <div class="install-step">
+                    <h4>1. Installation des dépendances (OSGeo4W Shell)</h4>
+                    <div class="code-block">
+                        <code>
+python -m pip install --upgrade pip<br>
+python -m pip install xgboost<br>
+python -m pip install earthengine-api<br>
+python -m pip install scikit-learn <br>
+python -m pip install seaborn  <br>
+python -m pip install matplotlib<br>
+python -m pip install joblib<br>
+python -m pip install rasterio
+                        </code>
+                    </div>
+                </div>
+                <div class="install-step">
+                    <h4>2. Configuration Google Earth Engine</h4>
+                    <p>Lors du premier lancement, suivre la procédure d'authentification automatique</p>
+                </div>
+                <div class="install-step">
+                    <h4>3. Activation du plugin</h4>
+                    <p>Menu QGIS : Extensions → Gérer et installer les extensions → QgisCropMapper</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>👨‍💻 Développement & Support</h2>
+            <div class="contact-info">
+                <p><strong>Développeur :</strong> Hiba Aamnous</p>
+                <p><strong>Organisation :</strong> Pôle Digital de l'Agriculture</p>
+                <p><strong>Email :</strong> hibaamnous@gmail.com</p>
+                <p><strong>Version :</strong> 2.0.0</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Pôle Digital de l'Agriculture - QgisCropMapper | Développé par Hiba Aamnous</p>
+        </footer>
+    </div>
+</body>
+</html>

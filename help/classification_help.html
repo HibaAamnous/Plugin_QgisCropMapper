@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification et Cartographie - QgisCropMapper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="../resources/images/logo_pole_digital.png" alt="Pôle Digital de l'Agriculture" class="logo">
+                </div>
+                <div class="title-section">
+                    <h1>🗺️ Classification et Cartographie</h1>
+                    <p class="subtitle">Application du modèle ML sur nouvelles zones</p>
+                    <p class="version">Classification par blocs | Cartes de probabilité | Export thématique</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="algorithm-help">
+            <h2>📋 Description Technique</h2>
+            <p class="description">
+                Cet algorithme applique un modèle de machine learning entraîné à de nouvelles images satellites 
+                pour produire une carte de classification des cultures. Il gère efficacement les grandes images 
+                par traitement par blocs et génère des cartes de probabilité pour évaluer la confiance des prédictions.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧱</span>
+                    <h3>Traitement par Blocs</h3>
+                    <p>Gestion mémoire optimisée pour les grandes images satellitaires</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Cartes de Probabilité</h3>
+                    <p>Génération de cartes de confiance pour chaque prédiction</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3>Cartes Thématiques</h3>
+                    <p>Création automatique de visualisations professionnelles</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔗</span>
+                    <h3>Intégration QGIS</h3>
+                    <p>Ajout automatique des couches au projet courant</p>
+                </div>
+            </div>
+
+            <h2>⚙️ Paramètres d'Entrée</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🛰️ Image Satellite à Classifier</h3>
+                    <p>Image contenant les bandes spectrales pour la classification</p>
+                    <p><strong>Format :</strong> GeoTIFF ou autre format raster supporté</p>
+                    <p><strong>Important :</strong> Mêmes bandes que lors de l'entraînement</p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>🤖 Modèle ML Entraîné</h3>
+                    <p>Fichier du modèle machine learning préalablement entraîné</p>
+                    <p><strong>Format :</strong> .pkl (Pickle)</p>
+                    <p><strong>Généré par :</strong> Algorithme d'entraînement ML</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📏 Scaler</h3>
+                    <p>Fichier de normalisation utilisé lors de l'entraînement</p>
+                    <p><strong>Format :</strong> .pkl (Pickle)</p>
+                    <p><strong>Important :</strong> Doit correspondre au modèle</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🔤 Label Encoder</h3>
+                    <p>Fichier d'encodage des labels utilisé lors de l'entraînement</p>
+                    <p><strong>Format :</strong> .pkl (Pickle)</p>
+                    <p><strong>Important :</strong> Doit correspondre au modèle</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🎨 Générer Carte Thématique</h3>
+                    <p>Option pour créer une visualisation cartographique</p>
+                    <p><strong>Options :</strong> Oui/Non</p>
+                    <p><strong>Défaut :</strong> Oui</p>
+                    <p><em>Désactiver pour un traitement plus rapide</em></p>
+                </div>
+            </div>
+
+            <h2>📤 Résultats de Sortie</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🗺️ Carte de Classification</h3>
+                    <p>Raster avec les classes de cultures prédites</p>
+                    <p><strong>Format :</strong> GeoTIFF</p>
+                    <p><strong>Valeurs :</strong> Codes numériques correspondant aux classes</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📊 Carte de Probabilité</h3>
+                    <p>Raster avec les probabilités de prédiction (optionnel)</p>
+                    <p><strong>Format :</strong> GeoTIFF</p>
+                    <p><strong>Valeurs :</strong> Probabilités entre 0 et 1</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>🎨 Carte Thématique</h3>
+                    <p>Visualisation cartographique des résultats (optionnel)</p>
+                    <p><strong>Format :</strong> PNG ou PDF</p>
+                    <p><strong>Contenu :</strong> Carte avec légende et classes colorées</p>
+                </div>
+            </div>
+
+            <h2>🔄 Processus de Classification</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>Chargement des Modèles</h4>
+                        <p>Lecture du modèle, scaler et label encoder</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>Prétraitement de l'Image</h4>
+                        <p>Application du scaler et préparation des données</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>Classification par Blocs</h4>
+                        <p>Application du modèle par blocs pour gestion mémoire</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <h4>Génération des Résultats</h4>
+                        <p>Création des rasters de classification et probabilités</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">5</span>
+                    <div class="step-content">
+                        <h4>Création de la Carte Thématique</h4>
+                        <p>Génération de la visualisation cartographique</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-number">6</span>
+                    <div class="step-content">
+                        <h4>Intégration QGIS</h4>
+                        <p>Ajout automatique des couches au projet</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>⚠️ Points d'Attention</h2>
+            <div class="parameter-grid">
+                <div class="parameter-card">
+                    <h3>🔄 Cohérence des Données</h3>
+                    <p><strong>Problème :</strong> Images avec bandes différentes de l'entraînement</p>
+                    <p><strong>Solution :</strong> Utiliser les mêmes bandes et même ordre</p>
+                </div>
+                
+                <div class="parameter-card">
+                    <h3>📏 Résolution Spatiale</h3>
+                    <p><strong>Problème :</strong> Résolution différente de l'entraînement</p>
+                    <p><strong>Solution :</strong> Rééchantillonner à la même résolution</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>📅 Période Temporelle</h3>
+                    <p><strong>Problème :</strong> Conditions phénologiques différentes</p>
+                    <p><strong>Solution :</strong> Utiliser des images de la même période</p>
+                </div>
+
+                <div class="parameter-card">
+                    <h3>💾 Mémoire Insuffisante</h3>
+                    <p><strong>Problème :</strong> Images trop grandes pour la mémoire</p>
+                    <p><strong>Solution :</strong> Découper l'image en plus petites parties</p>
+                </div>
+            </div>
+
+            <h2>💡 Conseils d'Utilisation</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Validation Terrain</h3>
+                    <p>Always validate classification results with ground truth data</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>Analyse des Probabilités</h3>
+                    <p>Use probability maps to identify uncertain predictions</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🔄</span>
+                    <h3>Itérations</h3>
+                    <p>Refine your model with additional training data if needed</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🌐</span>
+                    <h3>Application à Grande Échelle</h3>
+                    <p>For large areas, process by tiles and mosaic results</p>
+                </div>
+            </div>
+
+            <div class="help-navigation">
+                <a href="model_training_help.html" class="help-link">⬅️ Étape précédente : Entraînement ML</a>
+                <a href="index.html" class="help-link">🏠 Retour à l'accueil</a>
+                <a href="topology_help.html" class="help-link">➡️ Étape suivante : Correction topologique</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Pôle Digital de l'Agriculture - QgisCropMapper | Développé par Hiba Aamnous</p>
+        </footer>
+    </div>
+</body>
+</html>
