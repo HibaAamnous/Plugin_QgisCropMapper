@@ -1,12 +1,20 @@
 [general]
-name=Cartographie des Cultures - ML & GEE
+name=CartoCultures_ML_GEE
 qgisMinimumVersion=3.16
 description=Plugin professionnel de cartographie des cultures avec Machine Learning et Google Earth Engine - Développé au Pôle Digital Agriculture
-version=2.0.0
+version=2.0.2
 author=Hiba Aamnous - Pôle Digital de l'Agriculture, de la Forêt et Observatoire de la Sécheresse
 email=hibaamnous@gmail.com
 
-about=Plugin QGIS professionnel développé au Pôle Digital de l'Agriculture (IAV Hassan II) pour la cartographie automatisée des cultures agricoles.
+about=Plugin QGIS professionnel développé au Pôle Digital de l'Agriculture pour la cartographie automatisée des cultures agricoles.
+
+    ⚠️ INSTALLATION NÉCESSAIRE (OBLIGATOIRE POUR LE FONCTIONNEMENT)  
+    Merci d’installer les dépendances suivantes via OSGeo4W Shell :  
+
+    python -m pip install --upgrade pip
+    python -m pip install scikit-learn xgboost python-docx
+    python -m pip install seaborn matplotlib earthengine-api
+    python -m pip install rasterio joblib python-magic
 
     PIPELINE COMPLET DE CARTOGRAPHIE :
     🛰️ 1. Acquisition d'Images Satellites (Google Earth Engine)
@@ -22,23 +30,21 @@ about=Plugin QGIS professionnel développé au Pôle Digital de l'Agriculture (I
     • Correction topologique intelligente
     • Génération automatique de cartes thématiques
     • Validation croisée et métriques de performance
-    • Export multi-formats (Shapefile, GeoTIFF, PDF)
+    • Export multi-formats (Shapefile, GeoTIFF, PNG)
     • Documentation complète et aide contextuelle
 
-repository=https://github.com/HibaAamnous/Agriculture-Mapping-Plugin
+
+repository=https://github.com/HibaAamnous/Plugin_QgisCropMapper
+tracker=https://github.com/HibaAamnous/Plugin_QgisCropMapper/issues
+homepage=https://github.com/HibaAamnous/Plugin_QgisCropMapper
 hasProcessingProvider=yes
 category=Analysis
 icon=resources/icon.png
-experimental=False
+experimental=True
 deprecated=False
 
 tags=agriculture,cartographie,machine learning,google earth engine,télédétection,cultures,classification,topologie
 
-changelog=2.0.0 - Plugin complet avec 5 algorithmes intégrés
-    - Acquisition satellite automatisée via GEE
-    - Pipeline ML complet avec 4 algorithmes
-    - Interface topologique avancée
-    - Documentation professionnelle
-    - Système d'aide contextuelle intégré
+changelog=2.0.0 - Intégration complète du pipeline ML et GEE avec interface graphique et correction topologique avancée.
 
-dependencies=scikit-learn,xgboost,python-docx,seaborn,matplotlib,earthengine-api,rasterio,joblib,python-magic
+dependencies=scikit-learn,xgboost,seaborn,matplotlib,earthengine-api,rasterio,joblib

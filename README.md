@@ -71,7 +71,7 @@ agriculture_mapping_plugin/
 
 4. **Activer** le plugin dans : *Extensions > Gérer/Installer les extensions*
 
-5. **Rechercher** et activer : *"Cartographie des Cultures - ML & GEE"*
+5. **Rechercher** et activer : *"CartoCultures_ML_GEE"*
 
 ### ⚠️ Installation des Dépendances 
 
@@ -98,8 +98,8 @@ python -m pip install rasterio joblib python-magic
 
 ### Accès aux Algorithmes
 
-- **Menu principal :** *Extensions > Cartographie des Cultures - ML & GEE*
-- **Boîte à outils :** *Traitement > Cartographie des Cultures - ML & GEE*
+- **Menu principal :** *Extensions > CartoCultures_ML_GEE*
+- **Boîte à outils :** *Traitement > CartoCultures_ML_GEE*
 
 ## 🔧 Configuration Google Earth Engine
 
