@@ -142,6 +142,5 @@ Pour toute question ou problème :
 - **Email** : hibaamnous@gmail.com
 
 ---
-=======
 **Version 2.0.2** - Plugin QGIS professionnel de cartographie des cultures
 
