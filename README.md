@@ -143,4 +143,5 @@ Pour toute question ou problème :
 
 ---
 
+<<<<<<< HEAD
 **Version 2.0.2** - Plugin QGIS professionnel de cartographie des cultures
