@@ -3,15 +3,17 @@
 ## Arborescence Complète
 
 ```
-agriculture_mapping_plugin/          # 🌱 Dossier principal du plugin
+Plugin_QgisCropMapper/          # 🌱 Dossier principal du plugin
 │
 ├── 📄 __init__.py                   # Point d'entrée du plugin QGIS
 ├── 📄 agriculture_mapping_plugin.py # Classe principale du plugin
 ├── 📄 agriculture_processing_provider.py # Fournisseur d'algorithmes
 ├── 📄 metadata.txt                 # Métadonnées du plugin (version, description)
 ├── 📄 README.md                    # Documentation utilisateur complète
+├── 📄 LICENSE                      # Licence du plugin
 ├── 📄 STRUCTURE.md                 # Structure du projet (ce fichier)
 ├── 📄 .gitignore                   # Fichiers à ignorer par Git
+├── 📄 help_system.py               # 📚 Gestionnaire système d'aide
 │
 ├── 📁 algorithms/                   # 🔬 Algorithmes de traitement
 │   ├── 📄 __init__.py              # Module d'algorithmes
@@ -47,7 +49,7 @@ agriculture_mapping_plugin/          # 🌱 Dossier principal du plugin
     ├── 📄 topology_help.html       # Aide correction topologique
     └── 📄 styles.css               # Styles CSS personnalisés
 
-└── 📄 help_system.py            # 📚 Gestionnaire système d'aide
+
 
 
 ## Détail des Composants

@@ -15,39 +15,52 @@ Un plugin QGIS professionnel développé au **Pôle Digital de l'Agriculture, de
 ## 📁 Structure du Plugin
 
 ```
-agriculture_mapping_plugin/
-├── __init__.py                          # Point d'entrée du plugin
-├── agriculture_mapping_plugin.py        # Classe principale du plugin
-├── agriculture_processing_provider.py   # Fournisseur d'algorithmes
-├── metadata.txt                         # Métadonnées du plugin
-├── README.md                           # Documentation (ce fichier)
-├── replit.md                           # Configuration du projet
+Plugin_QgisCropMapper/          # 🌱 Dossier principal du plugin
 │
-├── algorithms/                         # Algorithmes de traitement
-│   ├── satellite_acquisition.py       # Acquisition d'images satellites
-│   ├── data_preparation.py            # Préparation des échantillons
-│   ├── model_training.py              # Entraînement des modèles ML
-│   ├── classification_mapping.py      # Classification et cartographie
-│   └── topological_correction.py      # Correction topologique
+├── 📄 __init__.py                   # Point d'entrée du plugin QGIS
+├── 📄 agriculture_mapping_plugin.py # Classe principale du plugin
+├── 📄 agriculture_processing_provider.py # Fournisseur d'algorithmes
+├── 📄 metadata.txt                 # Métadonnées du plugin (version, description)
+├── 📄 README.md                    # Documentation utilisateur complète
+├── 📄 LICENSE                      # Licence du plugin
+├── 📄 STRUCTURE.md                 # Structure du projet (ce fichier)
+├── 📄 .gitignore                   # Fichiers à ignorer par Git
+├── 📄 help_system.py               # 📚 Gestionnaire système d'aide
 │
-├── utils/                              # Utilitaires partagés
-│   ├── gee_utils.py                   # Utilities Google Earth Engine
-│   ├── ml_utils.py                    # Utilities Machine Learning
-│   └── validation_utils.py            # Validation des données
+├── 📁 algorithms/                   # 🔬 Algorithmes de traitement
+│   ├── 📄 __init__.py              # Module d'algorithmes
+│   ├── 📄 satellite_acquisition.py # Acquisition d'images satellites (GEE)
+│   ├── 📄 data_preparation.py      # Préparation échantillons ML
+│   ├── 📄 model_training.py        # Entraînement modèles ML (4 algos)
+│   ├── 📄 classification_mapping.py # Classification et cartographie
+│   └── 📄 topological_correction.py # Correction topologique (Processing)
 │
-├── resources/                         # Ressources du plugin
-│   ├── resources.qrc                  # Fichier de ressources Qt
-│   └── icons/                         # Icônes personnalisées
-│       ├── satellite.svg              # Icône acquisition satellite
-│       ├── data_prep.svg              # Icône préparation données
-│       ├── training.svg               # Icône entraînement ML
-│       ├── classification.svg         # Icône classification
-│       ├── topology.svg               # Icône correction topologique
-│       └── help.svg                   # Icône aide
+├── 📁 utils/                       # 🛠️ Utilitaires partagés
+│   ├── 📄 __init__.py              # Module d'utilitaires
+│   ├── 📄 gee_utils.py             # Utilities Google Earth Engine
+│   ├── 📄 ml_utils.py              # Utilities Machine Learning
+│   └── 📄 validation_utils.py      # Validation des données d'entrée
 │
-└── help/                              # Documentation complète
-    ├── index.html                     # Page d'aide principale
-    └── styles.css                     # Styles CSS personnalisés
+│
+├── 📁 resources/                   # 🎨 Ressources du plugin
+│   ├── 📄 resources.qrc            # Fichier de ressources Qt
+│   └── 📁 icons/                   # Icônes personnalisées SVG
+│       ├── 🛰️ satellite.svg        # Icône acquisition satellite
+│       ├── 📊 data_prep.svg        # Icône préparation données
+│       ├── 🤖 training.svg         # Icône entraînement ML
+│       ├── 🗺️ classification.svg   # Icône classification
+│       ├── 🔧 topology.svg         # Icône correction topologique
+│       └── 📚 help.svg             # Icône aide et documentation
+│
+├── 📁 help/                        # 📚 Documentation complète
+    ├── 📄 index.html               # Page d'aide principale
+    ├── 📄 Acquisition_Satellites_help.html # Aide acquisition satellite
+    ├── 📄 data_preparation_help.html # Aide préparation données
+    ├── 📄 model_training_help.html  # Aide entraînement ML
+    ├── 📄 classification_help.html  # Aide classification
+    ├── 📄 topology_help.html       # Aide correction topologique
+    └── 📄 styles.css               # Styles CSS personnalisés
+
 ```
 
 ## ⚙️ Installation
@@ -60,7 +73,7 @@ agriculture_mapping_plugin/
 
 ### Installation du Plugin
 
-1. **Télécharger** le dossier complet `agriculture_mapping_plugin`
+1. **Télécharger** le dossier complet `Plugin_QgisCropMapper`
 
 2. **Copier** dans le dossier des plugins QGIS :
    - **Windows:** `C:\Users\[utilisateur]\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins\`
@@ -84,7 +97,6 @@ python -m pip install scikit-learn xgboost python-docx
 python -m pip install seaborn matplotlib earthengine-api
 python -m pip install rasterio joblib python-magic
 ```
-
 
 ## 🚀 Utilisation
 
